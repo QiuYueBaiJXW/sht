@@ -1,14 +1,15 @@
 # Dockerfile.prod - 前后端合一生产环境
-FROM node:18-alpine AS frontend-builder
+FROM node:18 AS frontend-builder
 
-# 设置工作目录
-WORKDIR /app
+WORKDIR /app/frontend
 
-# 复制前端文件
+# 先拷贝依赖文件
 COPY frontend/package*.json ./
-RUN npm install
 
-# 复制前端源代码
+# 安装前端依赖（构建阶段需要 devDependencies）
+RUN npm install --registry=https://registry.npmmirror.com
+
+# 再拷贝前端源码
 COPY frontend/ ./
 
 # 构建前端
