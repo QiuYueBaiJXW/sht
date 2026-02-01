@@ -39,4 +39,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            jxw0331/sht-crawler:latest
+            jxw0331/sht:latest
